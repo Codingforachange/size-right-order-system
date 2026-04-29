@@ -71,19 +71,19 @@ async def generate_pdf(data: OrderData):
     doc = SimpleDocTemplate(buffer, pagesize=letter, leftMargin=30, rightMargin=30, topMargin=30, bottomMargin=30)
     styles = getSampleStyleSheet()
     elements = []
-    unifirst_green = colors.HexColor('#008a4e')
+    brand_success_green = colors.HexColor('#008a4e')
     
     # Track the running total
     grand_total = 0.0
 
     # Header
-    elements.append(Paragraph(f"UniFirst Order Form - {data.customerName}", styles['Title']))
+    elements.append(Paragraph(f"Size Right Order Form - {data.customerName}", styles['Title']))
     elements.append(Paragraph(f"Customer #: {data.customerNumber} | Location: {data.location} | Date: {data.date}", styles['Normal']))
     elements.append(Spacer(1, 20))
 
     # Facility Services Section
     if data.facilityItems:
-        elements.append(Paragraph("FACILITY SERVICES / FS ORDER", styles['Heading2']))
+        elements.append(Paragraph("FACILITY & MAINTENANCE SERVICES", styles['Heading2']))
         
         fs_data = [['Type', 'Description', 'Product Code', 'Billing Method', 'Price', 'Order Method', 'Soil Count', 'Freq', 'Inv']]
         span_rows = []
@@ -119,7 +119,7 @@ async def generate_pdf(data: OrderData):
         fs_table = Table(fs_data, colWidths=[55, 80, 65, 75, 45, 85, 50, 50, 35])
         
         fs_style = TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), unifirst_green),
+            ('BACKGROUND', (0, 0), (-1, 0), brand_success_green),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
             ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
             ('FONTSIZE', (0, 0), (-1, -1), 8),
@@ -153,7 +153,7 @@ async def generate_pdf(data: OrderData):
 
         p_table = Table(p_data, colWidths=[120, 100, 80, 60, 80])
         p_style = TableStyle([
-            ('BACKGROUND', (0, 0), (-1, 0), unifirst_green),
+            ('BACKGROUND', (0, 0), (-1, 0), brand_success_green),
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
             ('GRID', (0, 0), (-1, -1), 0.5, colors.grey),
             ('FONTSIZE', (0, 0), (-1, -1), 9),
@@ -172,7 +172,7 @@ async def generate_pdf(data: OrderData):
     total_data = [[f"ORDER GRAND TOTAL: ${grand_total:.2f}"]]
     total_table = Table(total_data, colWidths=[545])
     total_table.setStyle(TableStyle([
-        ('LINEABOVE', (0,0), (-1,0), 2, unifirst_green),
+        ('LINEABOVE', (0,0), (-1,0), 2, brand_success_green),
         ('ALIGN', (0,0), (-1,0), 'RIGHT'),
         ('FONTSIZE', (0,0), (-1,0), 12),
         ('FONTNAME', (0,0), (-1,0), 'Helvetica-Bold'),
