@@ -1,0 +1,105 @@
+/* --- Sticky Footer Action Bar --- */
+.footer-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 4px 0 !important;
+    border-top: 3px solid #008a4e; /* Brand Success Green Accent */
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1050; /* Ensures it stays above all cards */
+    pointer-events: none;
+}
+
+/* ---Make buttons in footer smaller--- */
+.footer-actions .btn {
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  font-size: 0.9rem !important;
+  pointer-events: auto;
+}
+
+/* --- Container Padding --- */
+/* This prevents the sticky footer from covering the last wearer's data */
+.container {
+    max-width: 1150px;
+    padding-bottom: 3px !important; 
+}
+
+/* --- Corporate Color Theme --- */
+.btn-success {
+    background-color: #008a4e !important; /* Brand Success Green */
+    border-color: #008a4e !important;
+    transition: transform 0.2s ease;
+}
+
+.btn-success:hover {
+    background-color: #006b3d !important;
+    transform: scale(1.02);
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+/* --- Card & Section Styling --- */
+.card {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+}
+
+/* Heading Icons */
+h4 i {
+    margin-right: 10px;
+    color: #008a4e;
+}
+
+/* --- Form Improvements --- */
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 4px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #008a4e;
+    box-shadow: 0 0 0 0.25rem rgba(0, 138, 78, 0.25);
+}
+
+/* --- Wearer Row Styling --- */
+.bg-light {
+    background-color: #f8f9fa !important;
+    border-left: 3px solid #dee2e6;
+}
+
+/* --- Animation for new items --- */
+.card {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Independent Tool Disclaimer---*/
+.disclaimer-text {
+  font-size: 0.85rem;
+  color: #6c757d;
+  line-height: 1.4;
+  margin-top: 20px;
+  padding-bottom: 10px;
+  border-top: 1px solid #dee2e6;
+}
+
+.disclaimer-text strong {
+  color: #212529; /* Makes the version number pop a little*/ 
+}

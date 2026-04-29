@@ -1,0 +1,181 @@
+<div class="container mt-4 pb-5">
+  <h2 class="text-center mb-4 text-dark fw-bold">SizeRight Order Entry System</h2>
+
+  <div class="card p-4 mb-4 shadow-sm border-top border-success border-4">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label fw-bold text-success">Customer #</label>
+        <input type="text" class="form-control" [(ngModel)]="orderData.customerNumber">
+      </div>
+      <div class="col-md-5">
+        <label class="form-label fw-bold text-success">Customer Name</label>
+        <input type="text" class="form-control" [(ngModel)]="orderData.customerName">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label fw-bold text-success">Location</label>
+        <input type="text" class="form-control" [(ngModel)]="orderData.location">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label fw-bold text-success">Date</label>
+        <input type="text" class="form-control" [(ngModel)]="orderData.date">
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="text-success fw-bold"><i class="bi bi-building"></i> Facility & Maintenance Order</h4>
+      <button class="btn btn-success btn-sm fw-bold" (click)="addFacilityItem()">+ Add Facility Item</button>
+    </div>
+
+    <div *ngFor="let item of orderData.facilityItems; let i = index" class="card p-3 mb-3 border-start border-success border-4 shadow-sm">
+      <div class="row g-3">
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Order Type</label>
+          <select class="form-select" [(ngModel)]="item.fsOrderType">
+            <option value="New Product">New Product</option>
+            <option value="Quit Product">Quit Product</option>
+            <option value="Add">Add</option>
+            <option value="COG">COG</option>
+            <option value="DOI">DOI</option>
+            <option value="IOI">IOI</option>
+            <option value="Sale">Sale</option>
+            <option value="Sample">Sample</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label class="form-label fw-bold">Description</label>
+          <input type="text" class="form-control" [(ngModel)]="item.description">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Product Code</label>
+          <input type="text" class="form-control" [(ngModel)]="item.productCode">
+        </div>
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Billing Method</label>
+          <select class="form-select" [(ngModel)]="item.billingMethod">
+            <option value="Inventory Based">Inventory Based</option>
+            <option value="Flat Rate Rent">Flat Rate Rent</option>
+            <option value="Rent B.O. Minimum">Rent B.O. Minimum</option>
+            <option value="Piece Rate Only">Piece Rate Only</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Per Piece Price</label>
+          <input type="number" class="form-control" [(ngModel)]="item.price">
+        </div>
+        <div class="col-md-1 d-flex align-items-end justify-content-end">
+          <button class="btn btn-outline-danger btn-sm" (click)="removeFacilityItem(i)">Remove</button>
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label fw-bold">Order Method</label>
+          <select class="form-select" [(ngModel)]="item.orderMethod">
+            <option value="Delayed Even Exchange">Delayed Even Exchange</option>
+            <option value="Straight Even Exchange">Straight Even Exchange</option>
+            <option value="Fixed Delivery Scheme">Fixed Delivery Scheme</option>
+          </select>
+        </div>
+        
+        <div class="col-md-1 pt-4 px-3">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="item.abusEnabled"> <span class="fw-bold">ABUS</span>
+        </div>
+        <div class="col-md-2" *ngIf="item.abusEnabled">
+            <label class="form-label">ABUS Name</label>
+            <input type="text" class="form-control" [(ngModel)]="item.abusName">
+        </div>
+        <div class="col-md-1" *ngIf="item.abusEnabled">
+            <label class="form-label">Emp #</label>
+            <input type="text" class="form-control" [(ngModel)]="item.abusEmpNum">
+        </div>
+
+        <div class="col-md-1 pt-4 text-end">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="item.systematicReplace"> <span class="fw-bold">Sys Replace</span>
+        </div>
+        <div class="col-md-1" *ngIf="item.systematicReplace">
+            <label class="form-label">SR %</label>
+            <input type="number" class="form-control" [(ngModel)]="item.replacePercent">
+        </div>
+        <div class="col-md-1" *ngIf="item.systematicReplace">
+            <label class="form-label">SR Rate</label>
+            <input type="number" class="form-control" [(ngModel)]="item.replaceRate">
+        </div>
+        <div class="col-md-1">
+            <label class="form-label fw-bold">Inv</label>
+            <input type="number" class="form-control" [(ngModel)]="item.circulatingQty">
+        </div>
+
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Soil Counted</label>
+          <select class="form-select" [(ngModel)]="item.soilCounted">
+            <option value="Manual">Manual</option>
+            <option value="Auto">Auto</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label class="form-label fw-bold">Delivery Scheme</label>
+          <select class="form-select" [(ngModel)]="item.deliveryScheme">
+            <option value="Weekly">Weekly</option>
+            <option value="Bi-Weekly">Bi-Weekly</option>
+            <option value="Every 4 Weeks">Every 4 weeks</option>
+          </select>
+        </div>
+        <div class="col-md-2 pt-4 px-3">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="item.deliveryVarEnabled"> <span class="fw-bold">Delivery Variation?</span>
+        </div>
+        <div class="col-md-2" *ngIf="item.deliveryVarEnabled">
+          <label class="form-label">Var Type</label>
+          <select class="form-select" [(ngModel)]="item.deliveryVarType">
+            <option value="Full">Full</option>
+            <option value="Half">Half</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="text-primary fw-bold"><i class="bi bi-person-badge"></i> Wearers</h4>
+      <button class="btn btn-primary btn-sm fw-bold" (click)="addWearer()">+ Add Wearer</button>
+    </div>
+
+    <div *ngFor="let wearer of orderData.wearers; let i = index" class="card p-4 mb-4 border-start border-primary border-4 shadow-sm">
+      <div class="row g-3 mb-3">
+        <div class="col-md-2"><label class="form-label fw-bold">LKR #</label><input type="text" class="form-control" [(ngModel)]="wearer.lkr"></div>
+        <div class="col-md-4"><label class="form-label fw-bold">First Name</label><input type="text" class="form-control" [(ngModel)]="wearer.firstName"></div>
+        <div class="col-md-4"><label class="form-label fw-bold">Last Name</label><input type="text" class="form-control" [(ngModel)]="wearer.lastName"></div>
+        <div class="col-md-2 d-flex align-items-end justify-content-end"><button class="btn btn-outline-danger btn-sm" (click)="removeWearer(i)">Remove</button></div>
+      </div>
+      <div class="ms-4">
+        <button class="btn btn-sm btn-link text-primary mb-2 p-0" (click)="addProduct(i)">+ Add Product to Wearer</button>
+        <div *ngFor="let prod of wearer.products; let j = index" class="row g-2 mb-2 p-2 border rounded bg-light shadow-sm">
+          <div class="col-md-3"><input type="text" class="form-control form-control-sm" placeholder="Function" [(ngModel)]="prod.wearerFunction"></div>
+          <div class="col-md-2"><input type="text" class="form-control form-control-sm" placeholder="Code" [(ngModel)]="prod.productCode"></div>
+          <div class="col-md-2"><input type="text" class="form-control form-control-sm" placeholder="Size" [(ngModel)]="prod.size"></div>
+          <div class="col-md-1"><input type="number" class="form-control form-control-sm" placeholder="Qty" [(ngModel)]="prod.issueQty"></div>
+          <div class="col-md-2"><input type="number" class="form-control form-control-sm" placeholder="Price" [(ngModel)]="prod.price"></div>
+          <div class="col-md-1 text-end"><button class="btn btn-sm btn-outline-danger" (click)="removeProduct(i, j)">X</button></div>
+          <div class="col-12 mt-1"><input type="text" class="form-control form-control-sm" placeholder="Emblem Template ID / Description" [(ngModel)]="prod.emblemId"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 100px;"></div>
+</div>
+
+<div class="footer-actions shadow-lg bg-white border-top border-dark py-3 position-fixed bottom-0 start-0 w-100" style="z-index: 1050;">
+  <div class="container d-flex justify-content-end gap-3">
+    <button class="btn btn-danger px-4 fw-bold shadow-sm" (click)="resetForm()">CLEAR ENTIRE ORDER</button>
+    <button class="btn btn-success px-5 fw-bold shadow-sm" (click)="processOrder()">PROCESS & GENERATE PDF</button>
+  </div>
+  <div class="container text-center disclaimer-text mt-5">
+    <p>
+      <strong>SizeRight v1.0</strong> | Independent Industrial Reporting Utility
+      <br>Developed for educational and internal workflow efficiency.
+      <em>Not an official corporate application.</em>
+    </p>
+  </div>
+</div>
