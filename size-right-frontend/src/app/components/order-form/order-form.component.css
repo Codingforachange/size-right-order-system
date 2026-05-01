@@ -1,14 +1,12 @@
 /* --- Sticky Footer Action Bar --- */
 .footer-actions {
     position: relative;
-    bottom: 0;
-    left: 0;
     width: 100%;
     background-color: #ffffff;
-    padding: 4px 0 !important;
+    padding: 15px 0 !important;
     border-top: 3px solid #008a4e; /* Brand Success Green Accent */
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1050; /* Ensures it stays above all cards */
+    margin-top: 30px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
     pointer-events: auto;
 }
 
