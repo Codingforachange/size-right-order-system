@@ -1,6 +1,6 @@
 /* --- Sticky Footer Action Bar --- */
 .footer-actions {
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -9,7 +9,7 @@
     border-top: 3px solid #008a4e; /* Brand Success Green Accent */
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1050; /* Ensures it stays above all cards */
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 /* ---Make buttons in footer smaller--- */
