@@ -1,13 +1,14 @@
 /* --- Sticky Footer Action Bar --- */
 .footer-actions {
-    position: relative;
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
     width: 100%;
     background-color: #ffffff;
-    padding: 15px 0 !important;
-    border-top: 3px solid #008a4e; /* Brand Success Green Accent */
-    margin-top: 30px;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
-    pointer-events: auto;
+    padding: 20px 0 !important;
+    margin-top: 50px !important;
+    display: block !important;
+    z-index: 1;
 }
 
 /* ---Make buttons in footer smaller--- */
