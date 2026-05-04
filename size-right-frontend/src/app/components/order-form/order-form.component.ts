@@ -112,6 +112,6 @@ export class OrderFormComponent {
 
   processOrder() {
     this.http.post('https://size-right-backend.onrender.com/generate-pdf', this.orderData, { responseType: 'blob' })
-    .subscribe(blob => saveAs(blob, `UniFirst_Order_${this.orderData.customerNumber || 'Draft'}.pdf`));
+    .subscribe(blob => saveAs(blob, `SizeRight_Order_${this.orderData.customerNumber || 'Draft'}.pdf`));
   }
 }
